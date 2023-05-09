@@ -1,5 +1,3 @@
-package candidato;
-
 public class AnimeSerie implements Candidato {
 
     private String nome;
@@ -17,8 +15,7 @@ public class AnimeSerie implements Candidato {
     public int getVotos() { return votos; }
 
 
-    @Override
-    public String enviarDados() {
+    public String imprimirDados() {
         System.out.printf("Nome do anime: %s \nQuantidade de votos: %d ",this.nome, this.votos);
         return null;
     }

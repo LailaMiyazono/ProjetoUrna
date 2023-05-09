@@ -40,13 +40,13 @@ public class Main {
 
         }
         //test
-        System.out.println(dragonBall.enviarDados());
-        System.out.println(onePierce.enviarDados());
-        System.out.println(jujutsu.enviarDados());
+        System.out.println(dragonBall.imprimirDados());
+        System.out.println(onePierce.imprimirDados());
+        System.out.println(jujutsu.imprimirDados());
 
-        listaAnimesSelecionados.add(dragonBall.enviarDados());
-        listaAnimesSelecionados.add(onePierce.enviarDados());
-        listaAnimesSelecionados.add(jujutsu.enviarDados());
+        listaAnimesSelecionados.add(dragonBall.imprimirDados());
+        listaAnimesSelecionados.add(onePierce.imprimirDados());
+        listaAnimesSelecionados.add(jujutsu.imprimirDados());
     }
 
 

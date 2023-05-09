@@ -2,6 +2,6 @@ package candidato;
 
 public interface Candidato{
     
-    public String imprimirDados();
+    public String enviarDados();
     public void receberVotos();
 }

@@ -1,5 +1,3 @@
-package candidato;
-
 public class AnimeFilme implements Candidato {
     
     private String nomeAnimeFilme;
@@ -17,12 +15,10 @@ public class AnimeFilme implements Candidato {
         this.nomeAnimeFilme = nomeAnimeFilme;
     }
 
-    @Override
-    public String enviaDados(){
+    public String imprimirDados(){
         return  this.nomeAnimeFilme + " "+ this.votos;
     }
 
-    @Override
     public void receberVotos() {
         int votos = Integer.parseInt(this.votos);
        votos++;
