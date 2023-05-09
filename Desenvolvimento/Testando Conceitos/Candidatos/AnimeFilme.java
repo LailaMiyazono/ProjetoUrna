@@ -1,16 +1,11 @@
 public class AnimeFilme implements Candidato {
     
     private String nomeAnimeFilme;
-    private String votos;
-
-    public AnimeFilme(String nomeAnimeFilme, String votos) {
-        this.nomeAnimeFilme = nomeAnimeFilme;
-        this.votos = votos;
-    }
+    private Integer votos;
 
     public AnimeFilme(String nomeAnimeFilme) {
         this.nomeAnimeFilme = nomeAnimeFilme;
-        this.votos = "0";
+        this.votos = 0;
     }
 
     public String getNomeAnimeFilme() {
@@ -22,14 +17,13 @@ public class AnimeFilme implements Candidato {
 
     @Override
     public String enviarDados(){
-        return  this.nomeAnimeFilme + " "+ this.votos;
+       String dados = this.nomeAnimeFilme + ","+ this.votos;
+       return dados;
     }
 
     @Override
     public void receberVotos() {
-        int votos = Integer.parseInt(this.votos);
-       votos++;
-       this.votos = String.valueOf(votos);
+       this.votos++;
 
     }
 }

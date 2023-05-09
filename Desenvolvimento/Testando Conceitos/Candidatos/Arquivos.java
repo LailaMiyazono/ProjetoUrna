@@ -12,11 +12,11 @@ import java.util.List;
 
 public class Arquivos {
     
-    Path caminhoLeitura;
-    List<AnimeFilme> listAnimeFilmes;
-    List<AnimeFilme> listAnimesSerie;
-    String diretorioAnimesFilme;
-    String diretorioAnimesSerie;
+    private Path caminhoLeitura;
+    private List<AnimeFilme> listAnimeFilmes;
+    private List<AnimeSerie> listAnimesSerie;
+    private String diretorioAnimesFilme;
+    private String diretorioAnimesSerie;
 
     public String getDiretorioAnimesFilme() {
         return diretorioAnimesFilme;
@@ -30,7 +30,7 @@ public class Arquivos {
     public List<AnimeFilme> getListAnimeFilmes() {
         return listAnimeFilmes;
     }
-    public List<AnimeFilme> getListAnimesSerie() {
+    public List<AnimeSerie> getListAnimesSerie() {
         return listAnimesSerie;
     }
 
@@ -54,7 +54,7 @@ public class Arquivos {
                 String[] linhaCandidato = itemTxt.split(",");
                 String name = linhaCandidato[0];
 
-                listAnimesSerie.add(new AnimeFilme(name)); // Adcionando candidatos do txt a lista de candidatos local.
+                listAnimesSerie.add(new AnimeSerie(name)); // Adcionando candidatos do txt a lista de candidatos local.
             
                 itemTxt = br.readLine();
             }
@@ -87,7 +87,7 @@ public class Arquivos {
         }
 
     }
-    public void pushAnimesFilme(){
+    public void pushAnimesFilme(List<AnimeFilme> animeFilmes){
         
 
         String diretorioSaida = this.diretorioAnimesSerie;
@@ -100,7 +100,7 @@ public class Arquivos {
             
             System.out.println("Arquivo AnimesFilme.txt criado!");
 
-            for(AnimeFilme candidato : listAnimeFilmes){
+            for(AnimeFilme candidato : animeFilmes){
                 bw.write(candidato.enviarDados());
                 bw.newLine();
             }
@@ -110,7 +110,7 @@ public class Arquivos {
 
 
     }
-    public void pushAnimesSerie(){
+    public void pushAnimesSerie(List<AnimeSerie> anime){
         
 
         String diretorioSaida = this.diretorioAnimesSerie;
@@ -121,7 +121,7 @@ public class Arquivos {
             
             System.out.println("Arquivo AnimesSerie.txt criado!");
 
-            for(AnimeFilme candidato : listAnimesSerie){
+            for(AnimeSerie candidato : anime){
                 bw.write(candidato.enviarDados());
                 bw.newLine();
             }

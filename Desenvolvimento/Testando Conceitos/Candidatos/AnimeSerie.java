@@ -18,12 +18,11 @@ public class AnimeSerie implements Candidato {
 
     @Override
     public String enviarDados() {
-        System.out.printf("Nome do anime: %s \nQuantidade de votos: %d ",this.nome, this.votos);
-        return null;
+        String dados = this.nome +","+ this.votos;
+        return dados;
     }
     public void receberVotos(){
         this.votos++;
-        System.out.printf("O anime %s recebeu %d", this.nome, this.votos);
     }
 }
 /*-nome: String
