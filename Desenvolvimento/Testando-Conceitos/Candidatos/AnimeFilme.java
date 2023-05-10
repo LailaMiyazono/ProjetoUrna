@@ -1,3 +1,4 @@
+package candidatos;
 public class AnimeFilme implements Candidato {
     
     private String nomeAnimeFilme;

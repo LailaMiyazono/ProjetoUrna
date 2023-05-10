@@ -1,3 +1,4 @@
+package candidatos;
 
 public class AnimeSerie implements Candidato {
 

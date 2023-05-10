@@ -1,3 +1,5 @@
+package apuração;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,12 +11,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import candidatos.AnimeFilme;
+import candidatos.AnimeSerie;
+
 
 public class Arquivos {
     
-    private Path caminhoLeitura;
     private List<AnimeFilme> listAnimeFilmes;
     private List<AnimeSerie> listAnimesSerie;
+
+
+    private Path caminhoLeitura;
+    private String diretorioRaiz;
     private String diretorioAnimesFilme;
     private String diretorioAnimesSerie;
 
@@ -39,14 +47,15 @@ public class Arquivos {
     }                                                                   
 
 
-    public void lerAnimesSerie(String filePath){
+    public void lerAnimesSerie() {
+        this.diretorioRaiz = System.getProperty("user.dir");
         this.listAnimesSerie = new ArrayList<>();
 
-        this.caminhoLeitura = Paths.get(filePath);
+        this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesSerie.txt");
 
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))){ // Lendo arquivo Candidatos.txt
+        try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesSerie.txt"))){ // Lendo arquivo Candidatos.txt
             
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
 
@@ -62,15 +71,16 @@ public class Arquivos {
             System.out.println("Error na leitura :" + e.getMessage());
         }
     }
-    public void lerAnimesFilme(String filePath){
+    public void lerAnimesFilme(){
         
         this.listAnimeFilmes = new ArrayList<>();
-
-        this.caminhoLeitura = Paths.get(filePath);
+        
+        this.diretorioRaiz = System.getProperty("user.dir");
+        this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesFilme.txt");
 
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesFilme = sourceFile.getParent(); // encontrando caminho da pasta arquivos
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))){ // Lendo arquivo Candidatos.txt
+        try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesFilme.txt"))){ // Lendo arquivo Candidatos.txt
             
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
 
@@ -89,12 +99,10 @@ public class Arquivos {
     }
     public void pushAnimesFilme(List<AnimeFilme> animeFilmes){
         
+        boolean sucess = new File(this.diretorioAnimesFilme + "/..///resultado").mkdir();// criando pasta para arquivos de saida
+        System.out.println("Pasta resultado criada!");
 
-        String diretorioSaida = this.diretorioAnimesSerie;
-        boolean sucess = new File(diretorioSaida + "//resultado").mkdir();// criando pasta para arquivos de saida
-        System.out.println("Pasta out criada!");
-
-        String resultadoTxt = diretorioSaida + "//resultado/AnimeFilmeResultado.txt"; // nomeando arquivo de resultados
+        String resultadoTxt = this.diretorioAnimesFilme + "/..///resultado/AnimeFilmeResultado.txt"; // nomeando arquivo de resultados
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt))) {// criando arquivo resultados.txt
             
@@ -115,7 +123,7 @@ public class Arquivos {
 
         String diretorioSaida = this.diretorioAnimesSerie;
 
-        String resultadoTxt = diretorioSaida + "//resultado/AnimesSerieResultado.txt"; // nomeando arquivo de resultados
+        String resultadoTxt = diretorioSaida + "/..//resultado/AnimesSerieResultado.txt"; // nomeando arquivo de resultados
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt))) {// criando arquivo resultados.txt
             
