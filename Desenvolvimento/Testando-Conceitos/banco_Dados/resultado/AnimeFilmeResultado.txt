@@ -1,11 +1,11 @@
-Dragon Ball Z,2
-Naruto,2
-Death Note,2
-Fullmetal Alchemist e Fullmetal Alchemist: Brotherhood,2
-One Piece,2
-Boku no Hero Academia,2
-Cavaleiros do Zodíaco,2
-Ataque dos Titãs,2
-Pokémon,2
-Samurai X,2
-JoJo's Bizarre Adventure,2
+DRAGON BALL Z,2
+NARUTO,2
+DEATH NOTE,2
+FULLMETAL ALCHEMIST E FULLMETAL ALCHEMIST: BROTHERHOOD,2
+ONE PIECE,2
+BOKU NO HERO ACADEMIA,2
+CAVALEIROS DO ZODÍACO,2
+ATAQUE DOS TITÃS,2
+POKÉMON,2
+SAMURAI X,2
+JOJO'S BIZARRE ADVENTURE,2

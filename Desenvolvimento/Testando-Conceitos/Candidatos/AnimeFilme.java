@@ -9,7 +9,7 @@ public class AnimeFilme implements Candidato {
     }
 
     public AnimeFilme(String nomeAnimeFilme) {
-        this.nomeAnimeFilme = nomeAnimeFilme;
+        this.nomeAnimeFilme = nomeAnimeFilme.toUpperCase();
         this.votos = 0;
     }
 

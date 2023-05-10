@@ -6,7 +6,7 @@ public class AnimeSerie implements Candidato {
     private int votos;
 
     public AnimeSerie(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
         this.votos = 0;
     }
 

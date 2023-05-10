@@ -1,11 +1,11 @@
-Dragon Ball GT,1
-Naruto,1
-Death Note,1
-Fullmetal Alchemist e Fullmetal Alchemist: Brotherhood,1
-One Piece,1
-Boku no Hero Academia,1
-Cavaleiros do Zodíaco,1
-Ataque dos Titãs,1
-Pokémon,1
-Samurai X,1
-JoJo's Bizarre Adventure,1
+DRAGON BALL GT,1
+NARUTO,1
+DEATH NOTE,1
+FULLMETAL ALCHEMIST E FULLMETAL ALCHEMIST: BROTHERHOOD,1
+ONE PIECE,1
+BOKU NO HERO ACADEMIA,1
+CAVALEIROS DO ZODÍACO,1
+ATAQUE DOS TITÃS,1
+POKÉMON,1
+SAMURAI X,1
+JOJO'S BIZARRE ADVENTURE,1

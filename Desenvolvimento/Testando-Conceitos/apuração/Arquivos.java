@@ -161,7 +161,7 @@ public class Arquivos {
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitorCritico.txt"))){ // Lendo arquivo Candidatos.txt
             
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
-
+            System.out.println("Critico.txt lido!");
             while(itemTxt != null){ // lendo demais linhas
                 String[] linhaCritico = itemTxt.split(",");
                 String name = linhaCritico[0];
@@ -183,7 +183,7 @@ public class Arquivos {
         this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitorAssinante.txt");
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
-        System.out.println("Eleitor Assinante lido");
+        System.out.println("Assinante.txt lido");
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitoresAssinantes.txt"))){ // Lendo arquivo Candidatos.txt
             
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
@@ -212,7 +212,7 @@ public class Arquivos {
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt))) {// criando arquivo resultados.txt
             
-            System.out.println("Arquivo AnimesSerie.txt criado!");
+            System.out.println("Arquivo teste.txt criado!");
             
             for(Critico critico : listCriticos){
                 bw.write(critico.enviarDados());
