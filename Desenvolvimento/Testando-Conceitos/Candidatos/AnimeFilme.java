@@ -4,6 +4,10 @@ public class AnimeFilme implements Candidato {
     private String nomeAnimeFilme;
     private Integer votos;
 
+    public Integer getVotos() {
+        return votos;
+    }
+
     public AnimeFilme(String nomeAnimeFilme) {
         this.nomeAnimeFilme = nomeAnimeFilme;
         this.votos = 0;

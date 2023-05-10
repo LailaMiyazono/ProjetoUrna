@@ -1,4 +1,4 @@
-
+package candidatos;
 public interface Candidato{
     
     public String enviarDados();

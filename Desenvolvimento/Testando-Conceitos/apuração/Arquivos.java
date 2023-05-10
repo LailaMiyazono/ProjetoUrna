@@ -1,5 +1,7 @@
 package apuração;
 
+import eleitores.*;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,13 +15,18 @@ import java.util.List;
 
 import candidatos.AnimeFilme;
 import candidatos.AnimeSerie;
+import eleitores.EleitorAssinante;
 
 
 public class Arquivos {
     
     private List<AnimeFilme> listAnimeFilmes;
     private List<AnimeSerie> listAnimesSerie;
+    
+    private List<Critico> listCriticos;
+    private List<EleitorAssinante> listAssinantes;
 
+   
 
     private Path caminhoLeitura;
     private String diretorioRaiz;
@@ -41,6 +48,12 @@ public class Arquivos {
     public List<AnimeSerie> getListAnimesSerie() {
         return listAnimesSerie;
     }
+    public List<EleitorAssinante> getListAssinantes() {
+        return listAssinantes;
+    }
+    public List<Critico> getListCriticos() {
+        return listCriticos;
+    }
 
     public void setCaminhoLeitura(Path caminhoLeitura) {
         this.caminhoLeitura = caminhoLeitura;
@@ -52,7 +65,6 @@ public class Arquivos {
         this.listAnimesSerie = new ArrayList<>();
 
         this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesSerie.txt");
-
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Candidatos/CandidatosAnimesSerie.txt"))){ // Lendo arquivo Candidatos.txt
@@ -133,6 +145,84 @@ public class Arquivos {
                 bw.write(candidato.enviarDados());
                 bw.newLine();
             }
+        } catch (IOException e) {
+            System.out.println("Error writing file: " + e.getMessage());
+        }
+
+    
+    }
+
+    public void lerCritico(){
+        this.listCriticos = new ArrayList<>();
+
+        this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitorCritico.txt");
+        File sourceFile = caminhoLeitura.toFile();
+        this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
+        try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitorCritico.txt"))){ // Lendo arquivo Candidatos.txt
+            
+            String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
+
+            while(itemTxt != null){ // lendo demais linhas
+                String[] linhaCritico = itemTxt.split(",");
+                String name = linhaCritico[0];
+                String email = linhaCritico[1];
+                String id = linhaCritico[2];
+
+                listCriticos.add(new Critico(name,email,id)); // Adcionando candidatos do txt a lista de candidatos local.
+            
+                itemTxt = br.readLine();
+            }
+        }catch (IOException e) { //excessão caso não consiga ler
+            System.out.println("Error na leitura :" + e.getMessage());
+        }
+        
+    }
+    public void lerAssinante(){
+        this.listAssinantes = new ArrayList<>();
+
+        this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitorAssinante.txt");
+        File sourceFile = caminhoLeitura.toFile();
+        this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
+        System.out.println("Eleitor Assinante lido");
+        try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/banco_Dados/Eleitores/EleitoresAssinantes.txt"))){ // Lendo arquivo Candidatos.txt
+            
+            String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
+
+            while(itemTxt != null){ // lendo demais linhas
+                String[] linhaAssinante = itemTxt.split(",");
+                String name = linhaAssinante[0];
+                String email = linhaAssinante[1];
+
+                listAssinantes.add(new EleitorAssinante(name,email)); // Adcionando candidatos do txt a lista de candidatos local.
+            
+                itemTxt = br.readLine();
+            }
+        }catch (IOException e) { //excessão caso não consiga ler
+            System.out.println("Error na leitura :" + e.getMessage());
+        }
+        
+    }
+    
+    public void push(){
+        
+
+        String diretorioSaida = this.diretorioAnimesSerie;
+
+        String resultadoTxt = diretorioSaida + "/..//Eleitores/teste.txt"; // nomeando arquivo de resultados
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt))) {// criando arquivo resultados.txt
+            
+            System.out.println("Arquivo AnimesSerie.txt criado!");
+            
+            for(Critico critico : listCriticos){
+                bw.write(critico.enviarDados());
+                bw.newLine();
+            }
+            for(EleitorAssinante candidato : listAssinantes){
+                bw.write(candidato.enviarDados());
+                bw.newLine();
+            }
+            
         } catch (IOException e) {
             System.out.println("Error writing file: " + e.getMessage());
         }
