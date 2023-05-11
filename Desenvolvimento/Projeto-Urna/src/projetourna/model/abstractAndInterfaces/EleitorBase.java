@@ -6,4 +6,8 @@ abstract public class EleitorBase implements Eleitor {
     public EleitorBase(String nome){
         this.nome = nome.toUpperCase();
     }
+
+    public String getNome() {
+        return nome;
+    }
 }

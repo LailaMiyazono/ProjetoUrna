@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/AnimeSerie.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/abstractAndInterfaces/interfaceEleitor.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/abstractAndInterfaces/Eleitor.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/AnimeFilme.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/controller/Arquivos.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/Aplicacao.java</file>
-            <file>file:/C:/Users/Jeferson/OneDrive/Documentos/Preciosos/Projeto-Urna/src/projetourna/model/abstractAndInterfaces/Candidato.java</file>
+            <file>file:/C:/GitProjetos/ProjetoUrna/Desenvolvimento/Projeto-Urna/src/projetourna/view/TelaLogin.java</file>
+            <file>file:/C:/GitProjetos/ProjetoUrna/Desenvolvimento/Projeto-Urna/src/projetourna/controller/LoginController.java</file>
+            <file>file:/C:/GitProjetos/ProjetoUrna/Desenvolvimento/Projeto-Urna/src/projetourna/model/Aplicacao.java</file>
+            <file>file:/C:/GitProjetos/ProjetoUrna/Desenvolvimento/Projeto-Urna/src/projetourna/controller/Arquivos.java</file>
         </group>
     </open-files>
 </project-private>

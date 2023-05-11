@@ -25,9 +25,13 @@ public class Arquivos {
     
     private List<Critico> listCriticos;
     private List<EleitorAssinante> listAssinantes;
+    private List<EleitorAssinante> listVotaramAssinante;
+    private List<Critico> listVotaramCritico;
+    
 
    
 
+    
     private Path caminhoLeitura;
     private String diretorioRaiz;
     private String diretorioAnimesFilme;
@@ -58,7 +62,13 @@ public class Arquivos {
     public void setCaminhoLeitura(Path caminhoLeitura) {
         this.caminhoLeitura = caminhoLeitura;
     }                                                                   
-
+    public List<Critico> getListVotaramCritico() {
+        return listVotaramCritico;
+    }
+    public List<EleitorAssinante> getListVotaramAssinante() {
+        return listVotaramAssinante;
+    }
+    
 
     public void lerAnimesSerie() {
         this.diretorioRaiz = System.getProperty("user.dir");
@@ -90,6 +100,7 @@ public class Arquivos {
         this.diretorioRaiz = System.getProperty("user.dir");
         this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Candidatos/CandidatosAnimesFilme.txt");
 
+        System.out.println(this.diretorioRaiz);
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesFilme = sourceFile.getParent(); // encontrando caminho da pasta arquivos
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Candidatos/CandidatosAnimesFilme.txt"))){ // Lendo arquivo Candidatos.txt
@@ -166,8 +177,8 @@ public class Arquivos {
                 String[] linhaCritico = itemTxt.split(",");
                 String name = linhaCritico[0];
                 String email = linhaCritico[1];
-                String id = linhaCritico[2];
-
+                String id =linhaCritico[2];
+            
                 listCriticos.add(new Critico(name,email,id)); // Adcionando candidatos do txt a lista de candidatos local.
             
                 itemTxt = br.readLine();
@@ -179,11 +190,13 @@ public class Arquivos {
     }
     public void lerAssinante(){
         this.listAssinantes = new ArrayList<>();
-
+        
+        this.diretorioRaiz = System.getProperty("user.dir");
         this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/EleitorAssinante.txt");
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
         System.out.println("Assinante.txt lido");
+
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/EleitoresAssinantes.txt"))){ // Lendo arquivo Candidatos.txt
             
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
@@ -225,8 +238,18 @@ public class Arquivos {
             
         } catch (IOException e) {
             System.out.println("Error writing file: " + e.getMessage());
+        }    
+    }
+    public void iniciarListas(){
+        this.listVotaramAssinante = new ArrayList();
+        this.listVotaramCritico = new ArrayList();
         }
+    public void addVotaram(String name, String email, String id){
+        if(id != null){
+            this.listVotaramAssinante.add(new EleitorAssinante(name,email) );
 
-    
+        }else{
+            this.listVotaramCritico.add(new Critico(name, email, id));
+        }
     }
 }

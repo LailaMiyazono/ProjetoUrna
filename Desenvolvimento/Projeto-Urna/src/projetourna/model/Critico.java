@@ -10,8 +10,8 @@ public class Critico extends EleitorBase {
 
     public Critico (String nome, String email, String id){
         super(nome);
-        this.id = id;
         this.email = email.toLowerCase();
+        this.id = id;
     }
     public void votar(){
         System.out.println("Critico " + nome + "esta votando.");
@@ -20,5 +20,11 @@ public class Critico extends EleitorBase {
     public String enviarDados(){
         String dados = super.nome+","+this.email+","+this.id;
         return dados;
+    }
+    public String getId() {
+        return id;
+    }
+    public String getEmail() {
+        return email;
     }
 }

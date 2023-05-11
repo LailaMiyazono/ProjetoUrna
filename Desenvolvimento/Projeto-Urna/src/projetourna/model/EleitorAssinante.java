@@ -18,4 +18,7 @@ public class EleitorAssinante extends EleitorBase {
         String dados = super.nome+","+this.email;
         return dados;
     }
+    public String getEmail() {
+        return email;
+    }
 }

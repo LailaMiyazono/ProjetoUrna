@@ -8,7 +8,8 @@ import projetourna.controller.Arquivos;
 
 public class Aplicacao{
     public static void main(String[] args) {
-
+            //classe para testes
+            
             // String caminho = System.getProperty("user.dir");
             // System.out.println(caminho);
             Arquivos arquivos = new Arquivos();
@@ -33,6 +34,5 @@ public class Aplicacao{
             arquivos.pushAnimesSerie(animeSerie);
             arquivos.push();
             
-
         }
 }
