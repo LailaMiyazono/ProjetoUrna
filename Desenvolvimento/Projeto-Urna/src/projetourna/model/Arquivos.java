@@ -1,4 +1,4 @@
-package projetourna.controller;
+package projetourna.model;
 
 
 import java.io.BufferedReader;

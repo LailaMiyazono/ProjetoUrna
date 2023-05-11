@@ -156,7 +156,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,13 +179,17 @@ public class TelaLogin extends javax.swing.JFrame {
 
             switch(sucess){
                 case "Assinante ainda não votou":
-                    JOptionPane.showMessageDialog(null,"Assinante Validado com Sucesso!");
+                   TelaVotacao votacao = new TelaVotacao();
+                   this.dispose();
+                   votacao.setVisible(true);
                     break;
                 case "Assinante já votou":
                     JOptionPane.showMessageDialog(null,"Assinante já votou!");
                     break;
                 case "Critico ainda não votou":
-                    JOptionPane.showMessageDialog(null,"Critico Validado com Sucesso!");
+                    votacao = new TelaVotacao();
+                    this.dispose();
+                    votacao.setVisible(true);
                     break;
                 case "Critico já votou":
                     JOptionPane.showMessageDialog(null,"Critico ja votou!");
@@ -194,7 +198,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Assinante não encontrado");
                     break;
                 case "Critico não encontrado":
-                    JOptionPane.showMessageDialog(null,"Critico não encontrado"+txtId.getText()+txtSenha.getText()+txtUsuario.getText());
+                    JOptionPane.showMessageDialog(null,"Critico não encontrado");
                     break;
                 default:
                 JOptionPane.showMessageDialog(null,"Prencha corretamente os campos");

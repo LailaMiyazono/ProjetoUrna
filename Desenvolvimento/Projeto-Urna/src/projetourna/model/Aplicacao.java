@@ -3,7 +3,6 @@ package projetourna.model;
 
 
 import java.util.List;
-import projetourna.controller.Arquivos;
 
 
 public class Aplicacao{

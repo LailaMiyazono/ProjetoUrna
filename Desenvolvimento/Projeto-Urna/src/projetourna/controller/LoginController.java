@@ -4,6 +4,7 @@
  */
 package projetourna.controller;
 
+import projetourna.model.Arquivos;
 import java.util.List;
 
 import projetourna.model.Critico;
