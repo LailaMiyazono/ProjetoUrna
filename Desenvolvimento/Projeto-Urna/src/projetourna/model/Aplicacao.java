@@ -17,6 +17,7 @@ public class Aplicacao{
             arquivos.lerAnimesSerie();
             arquivos.lerCritico();
             arquivos.lerAssinante();
+            arquivos.iniciarListas();
 
             List<AnimeSerie> animeSerie = arquivos.getListAnimesSerie();
             List<AnimeFilme> animeFilmes = arquivos.getListAnimeFilmes();
@@ -32,7 +33,35 @@ public class Aplicacao{
 
             arquivos.pushAnimesFilme(animeFilmes);
             arquivos.pushAnimesSerie(animeSerie);
-            arquivos.push();
             
+            List<EleitorAssinante> listaAssinantes = arquivos.getListAssinantes();
+            List<Critico> listaCriticos = arquivos.getListCriticos();
+            
+            String nome = "ALEFE FREIRE SANTOS";
+            String senha = "alefefreiresantos123@gmail.com";
+
+            
+            // for (EleitorAssinante assinante : listaAssinantes) { //lendo array de assinantes
+            //     if (assinante.getNome().equals(nome) && assinante.getEmail().equals(senha)) { //verificando se os dados batem com algum assinante
+            //         if (arquivos.lerJaVotaram(nome, senha, null) != false){ // verificando se o assinante ja votou
+            //             arquivos.addVotaram(nome, senha, null);
+            //             System.out.println("não encontrou");
+            //         }else{
+            //             System.out.println("encontrou");
+            //         }
+            //     }else{
+            //         break;
+            //     }
+
+            // }
+            if (arquivos.lerJaVotaram(nome, senha, null) == null){ // verificando se o assinante ja votou
+                arquivos.addVotaram(nome, senha, null);
+                System.out.println(true);
+            }else{
+                System.out.println(false);
+            }
+
+            
+            System.out.println(nome + senha +arquivos.lerJaVotaram(nome, senha, null));
         }
 }

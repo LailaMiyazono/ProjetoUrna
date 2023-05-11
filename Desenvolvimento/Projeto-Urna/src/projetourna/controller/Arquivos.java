@@ -195,10 +195,10 @@ public class Arquivos {
         this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/EleitorAssinante.txt");
         File sourceFile = caminhoLeitura.toFile();
         this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta arquivos
-        System.out.println("Assinante.txt lido");
 
         try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/EleitoresAssinantes.txt"))){ // Lendo arquivo Candidatos.txt
-            
+            System.out.println("Assinante.txt lido");
+
             String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
 
             while(itemTxt != null){ // lendo demais linhas
@@ -216,40 +216,112 @@ public class Arquivos {
         
     }
     
-    public void push(){
-        
-
-        String diretorioSaida = this.diretorioAnimesSerie;
-
-        String resultadoTxt = diretorioSaida + "/..//Eleitores/teste.txt"; // nomeando arquivo de resultados
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt))) {// criando arquivo resultados.txt
-            
-            System.out.println("Arquivo teste.txt criado!");
-            
-            for(Critico critico : listCriticos){
-                bw.write(critico.enviarDados());
-                bw.newLine();
-            }
-            for(EleitorAssinante candidato : listAssinantes){
-                bw.write(candidato.enviarDados());
-                bw.newLine();
-            }
-            
-        } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
-        }    
-    }
     public void iniciarListas(){
         this.listVotaramAssinante = new ArrayList();
         this.listVotaramCritico = new ArrayList();
         }
-    public void addVotaram(String name, String email, String id){
-        if(id != null){
-            this.listVotaramAssinante.add(new EleitorAssinante(name,email) );
+
+    public void addVotaram(String name, String email, String id){ // adcionando quem não votou a jaVotaram.txt
+        if(id == null){
+            
+            EleitorAssinante assinanteLogin = new EleitorAssinante(name, email);
+
+            // Verifica se o assinante já votou
+        if (!listVotaramAssinante.contains(assinanteLogin)) {
+            String diretorioSaida = this.diretorioAnimesSerie;
+            String resultadoTxt = diretorioSaida + "/..//Eleitores/jaVotaram.txt";
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt, true))) {
+                System.out.println("Tudo certo com o jaVotaram!");
+                bw.write(assinanteLogin.enviarDados());
+                bw.newLine();
+                System.out.println("Assinante adicionado em jaVotaram");
+            } catch (IOException e) {
+                System.out.println("Error writing file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Usuário já votou");
+        }
+            
 
         }else{
-            this.listVotaramCritico.add(new Critico(name, email, id));
+            Critico criticoLogin = new Critico(name, email, id);
+        
+            // Verifica se o crítico já votou
+            if (!listVotaramCritico.contains(criticoLogin)) {
+                String diretorioSaida = this.diretorioAnimesSerie;
+                String resultadoTxt = diretorioSaida + "/..//Eleitores/jaVotaram.txt";
+                
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(resultadoTxt, true))) {
+                    System.out.println("Tudo certo com o jaVotaram!");
+                    bw.write(criticoLogin.enviarDados());
+                    bw.newLine();
+                    System.out.println("Critico adicionado em jaVotaram");
+                } catch (IOException e) {
+                    System.out.println("Error writing file: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Usuário já votou");
+            }
         }
+
+    }
+    public String lerJaVotaram(String nomeTxt, String emailTxt, String idTtxt){
+
+        this.listVotaramAssinante = new ArrayList<>();
+        this.listVotaramCritico = new ArrayList<>();
+        
+        this.diretorioRaiz = System.getProperty("user.dir");
+        this.caminhoLeitura = Paths.get(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/jaVotaram.txt");
+        File sourceFile = caminhoLeitura.toFile();
+        this.diretorioAnimesSerie = sourceFile.getParent(); // encontrando caminho da pasta 
+        
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(this.diretorioRaiz + "/src/projetourna/Banco_Dados/Eleitores/jaVotaram.txt"))){ // Lendo arquivo Candidatos.txt
+            System.out.println("Ja votaram.txt lido para extração");
+
+            String itemTxt  = br.readLine(); // lendo primeira linha do arquivo
+           
+
+
+            while(itemTxt != null){ // lendo demais linhas
+                String[] linhaAssinante = itemTxt.split(",");
+                System.out.println(linhaAssinante[0]);
+                if (linhaAssinante.length >= 3) {
+                    String name = linhaAssinante[0];
+                    String email = linhaAssinante[1];
+                    String id = linhaAssinante[2];
+                    if(id.equals("null")){
+       
+                        listVotaramAssinante.add(new EleitorAssinante(name,email)); // Adcionando candidatos do txt a lista de candidatos local.
+                        
+                    }else{
+                        listVotaramCritico.add(new Critico(name,email,id)); // Adcionando candidatos do txt a lista de candidatos local.
+                    }
+                    
+                    for(EleitorAssinante lendo : this.listVotaramAssinante){
+                        if(lendo.getNome().equals(nomeTxt) && lendo.getEmail().equals(emailTxt)){
+                            return "Usuário ja votou";
+                        }
+                    }
+                    for(Critico lendoCritico : this.listVotaramCritico){
+                        if(lendoCritico.getNome().equals(nomeTxt) && lendoCritico.getEmail().equals(emailTxt)){
+                            return "Usuário ja votou";
+                        }
+                    }
+                    itemTxt = br.readLine();
+                } else {
+                    System.out.println("Linha inválida: " + itemTxt);
+                    break;
+                }
+
+               
+            }
+           
+            
+        }catch (IOException e) { //excessão caso não consiga ler
+            System.out.println("Error na leitura :" + e.getMessage());
+        }
+        return "Usuário ainda não votou";      
     }
 }
