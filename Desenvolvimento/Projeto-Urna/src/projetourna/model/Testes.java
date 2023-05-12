@@ -5,7 +5,7 @@ package projetourna.model;
 import java.util.List;
 
 
-public class Aplicacao{
+public class Testes{
     public static void main(String[] args) {
             //classe para testes
             

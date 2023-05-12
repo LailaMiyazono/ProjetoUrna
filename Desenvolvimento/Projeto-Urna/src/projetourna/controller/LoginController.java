@@ -31,7 +31,7 @@ public class LoginController {
     public String ValidarUsuario(String name, String possword, String id){ 
          // o metodo retorna true quando o eleitor puder votar, e false caso contrário
 
-        if(name != null && possword != null && id.equals("")){ // vendo se os campos foram preenchidos
+        if(name.length() > 0 && possword.length() > 0 && id.length() == 0){ // vendo se os campos foram preenchidos
         
             String nome = name.toUpperCase();
             String senha = possword.toLowerCase();
@@ -39,6 +39,9 @@ public class LoginController {
             String situacao = "";
 
             List<EleitorAssinante> listaAssinantes = dadosEleitores.getListAssinantes();
+            for(EleitorAssinante eleitor : listaAssinantes){
+                System.out.println(eleitor.enviarDados());
+            }
             
             
             for (EleitorAssinante assinante : listaAssinantes) { //lendo array de assinantes
@@ -49,9 +52,9 @@ public class LoginController {
             }
             if(encontrado){
                 if (dadosEleitores.lerJaVotaram(nome, senha, null).equals("Usuário ainda não votou")){ // verificando se o assinante ja votou
-                    dadosEleitores.addVotaram(nome, senha, null);
-                    situacao = "Assinante ainda não votou";
+                    situacao = dadosEleitores.addVotaram(nome, senha, null) ? "Assinante já votou" : "Assinante ainda não votou";
                 }else{
+
                     situacao = "Assinante já votou";
                 }
                 System.out.println(situacao);
@@ -63,6 +66,8 @@ public class LoginController {
             return situacao;
             
         }else if(name != null && possword != null && id != null){
+           
+            
 
             String nome = name.toUpperCase();
             String senha = possword.toLowerCase();
@@ -71,6 +76,10 @@ public class LoginController {
             Boolean encontrado = false;
             
             List<Critico> listaCriticos = dadosEleitores.getListCriticos();
+            List<Critico> votaram = dadosEleitores.getListVotaramCritico();
+            for(Critico eleitor : votaram){
+                System.out.println(eleitor.enviarDados()+"--Critico");
+            }
 
             for (Critico critico : listaCriticos) { //lendo array de assinantes
                 System.out.println(critico.getNome()+critico.getEmail()+critico.getId());
@@ -81,19 +90,19 @@ public class LoginController {
             }
             if(encontrado){
                 if (dadosEleitores.lerJaVotaram(nome, senha, id).equals("Usuário ainda não votou")){ // verificando se o critico ja votou
-                    dadosEleitores.addVotaram(nome, senha, iD);
-                    situacao = "Critico ainda não votou";
+                    situacao = dadosEleitores.addVotaram(nome, senha, iD) ? "Critico já votou" : "Critico ainda não votou";
                 }else{
                     situacao = "Critico já votou";
                 }
                 System.out.println(situacao);
                 return situacao;
             }else{
-                situacao = "Critico não encontrado";
+                situacao = "Critico não encontrado!";
             }
             System.out.println(situacao);
-            return situacao;
             
+        }else{
+            return "Preencha os dados corretamente";
         }
        
         return "Preencha os dados corretamente";
